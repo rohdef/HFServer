@@ -1,0 +1,9 @@
+<project name="test ivy" default="resolve" xmlns:ivy="antlib:org.apache.ivy.ant">
+    <property name="lib.dir" value="lib" />
+    <property name="build.dir" value="build" />
+    <property name="src.dir" value="src" />
+
+    <target name="resolve" description="Test ivy installation">
+        <ivy:retrieve/>
+    </target>
+</project>
