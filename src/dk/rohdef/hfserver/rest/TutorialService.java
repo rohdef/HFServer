@@ -1,33 +1,29 @@
-package dk.rohdef.hfserver;
+package dk.rohdef.hfserver.rest;
 
 import com.mongodb.Block;
-import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
+import dk.rohdef.hfserver.model.Tutorial;
 import org.bson.Document;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
  * Created by Rohde Fischer on 7/12/15.
  */
-@Path("/hello")
-public class Test  {
-    private MongoClient mongoClient;
-    private MongoDatabase mongoDatabase;
-
-    public Test() {
-        mongoClient = new MongoClient();
-        mongoDatabase = mongoClient.getDatabase("handicapformidlingen");
-    }
-
+@Path("/tutorial")
+@Api(value="/tutorial", description = "Manipulating tutorials")
+public class TutorialService extends BaseService {
     @POST
+    @ApiOperation(value = "Create tutorial",
+            position = 1)
     @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_XML})
     public Tutorial create(Tutorial tutorial) {
@@ -37,7 +33,7 @@ public class Test  {
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_XML})
     public LinkedList<Tutorial> getTutorials() {
-        MongoCollection<Document> tutorials = mongoDatabase.getCollection("tutorials");
+        MongoCollection<Document> tutorials = getMongoDatabase().getCollection("tutorials");
 
         final LinkedList<Tutorial> tutorialLinkedListReturn = new LinkedList<>();
         FindIterable<Document> iterable = tutorials.find();

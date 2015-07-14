@@ -1,4 +1,4 @@
-package dk.rohdef.hfserver;
+package dk.rohdef.hfserver.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
