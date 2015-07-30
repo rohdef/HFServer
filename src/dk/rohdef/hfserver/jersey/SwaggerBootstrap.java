@@ -20,7 +20,7 @@ public class SwaggerBootstrap extends HttpServlet {
         beanConfig.setLicense("MIT");
         beanConfig.setLicenseUrl("http://opensource.org/licenses/MIT");
         beanConfig.setVersion("0.0.1");
-        beanConfig.setBasePath("http://localhost:8181/rest");
+        beanConfig.setBasePath("http://rohdef.dk:8080/rest");
         beanConfig.setResourcePackage("dk.rohdef.hfserver.rest");
         beanConfig.setScan(true);
     }

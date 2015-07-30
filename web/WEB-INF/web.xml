@@ -2,8 +2,7 @@
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-         id="WebApp_ID"
-         version="3.1">
+         id="WebApp_ID">
     <display-name>Handicapformidlingen Server</display-name>
     <description>None yet</description>
 
@@ -19,16 +18,19 @@
             <param-name>jersey.config.server.provider.packages</param-name>
             <param-value>
                 com.wordnik.swagger.jaxrs.json,
-                dk.rohdef.hfserver.rest
+                dk.rohdef.hfserver.rest,
+                dk.rohdef.hfserver.jersey.security
             </param-value>
         </init-param>
         <init-param>
             <param-name>jersey.config.server.provider.classnames</param-name>
             <param-value>
                 dk.rohdef.hfserver.jersey.CORSResponseFilter,
+                dk.rohdef.hfserver.jersey.security.AuthFilter,
                 com.wordnik.swagger.jersey.listing.ApiListingResourceJSON,
                 com.wordnik.swagger.jersey.listing.JerseyApiDeclarationProvider,
-                com.wordnik.swagger.jersey.listing.JerseyResourceListingProvider
+                com.wordnik.swagger.jersey.listing.JerseyResourceListingProvider,
+                org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature
             </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
